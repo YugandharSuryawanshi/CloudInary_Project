@@ -1,0 +1,33 @@
+.container {
+    max-width: 700px;
+    margin: auto;
+}
+
+.preview-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.image-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.img-thumbnail {
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.img-thumbnail:hover {
+    transform: scale(1.1);
+}
+
+.uploaded-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}

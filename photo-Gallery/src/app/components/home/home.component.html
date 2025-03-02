@@ -1,0 +1,30 @@
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Upload Images</h2>
+
+    <!-- Image Preview Section -->
+    <div class="preview-container">
+        <div *ngIf="imagePreviews.length > 0" class="image-preview">
+            <div *ngFor="let img of imagePreviews; let i = index">
+                <img [src]="img" alt="Preview" class="img-thumbnail m-2" width="150">
+                <button class="btn btn-danger btn-sm" (click)="removeImage(i)">X</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Upload Section -->
+    <div class="form-group">
+        <input type="file" (change)="onFileSelected($event)" multiple class="form-control">
+    </div>
+
+    <button class="btn btn-primary mt-2" (click)="uploadImages()">Upload</button>
+
+    <hr>
+
+    <!-- Display Uploaded Images -->
+    <h3>Uploaded Images</h3>
+    <div class="uploaded-images">
+        <div *ngFor="let img of uploadedImages">
+            <img [src]="img.imageUrl" alt="Uploaded Image" class="img-thumbnail m-2" width="150">
+        </div>
+    </div>
+</div>

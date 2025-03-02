@@ -1,0 +1,9 @@
+<p>all-images works!</p>
+<div class="container text-center mt-5">
+    <button class="btn btn-primary" (click)="getDatabaseImages()">All Images DB</button>
+    <button class="btn btn-secondary" (click)="getCloudImages()">All Cloud Images</button>
+
+    <div *ngIf="images.length > 0" class="image-grid">
+        <img *ngFor="let image of images" [src]="image.url" class="img-thumbnail" />
+    </div>
+</div>
