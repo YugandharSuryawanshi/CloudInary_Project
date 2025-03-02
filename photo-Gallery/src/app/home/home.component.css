@@ -1,0 +1,58 @@
+.modal {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    margin-top: 60px;
+    max-width: 800px;
+}
+
+webcam {
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.img-preview {
+    max-width: 100%;
+    max-height: 400px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.file-section {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.file-list {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.file-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.file-name {
+    flex: 2;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.file-size {
+    flex: 1;
+    text-align: right;
+    color: #666;
+}
+
+.btn {
+    min-width: 120px;
+}

@@ -7,18 +7,22 @@ import { Observable } from 'rxjs';
 })
 export class ImageApiService {
 
-  private baseUrl = 'http://localhost:5000/api/images';
+  private apiUrl = 'http://localhost:3000/api';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  // Upload Images
-  uploadImages(formData: FormData): Observable<any> {
-      return this.http.post(`${this.baseUrl}/upload`, formData);
+  uploadImage(image: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('image', image);
+    return this.http.post(`${this.apiUrl}/upload`, formData);
   }
 
-  // Get All Images
-  getAllImages(): Observable<any> {
-      return this.http.get(`${this.baseUrl}/all`);
+  getDbImages(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/images/db`);
+  }
+
+  getCloudImages(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/images/cloud`);
   }
 
 }
