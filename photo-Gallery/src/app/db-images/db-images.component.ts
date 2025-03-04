@@ -31,15 +31,10 @@ export class DbImagesComponent {
     });
   }
 
-  loadCloudImages() {
-    this.imageService.getCloudImages().subscribe({
-      next: (data: any) => {
-        this.images = data;
-        console.log('The Images OF Cloud are '+this.images);
-        
-      },
-      error: (err: any) => console.error(err)
-    });
+  changeDB()
+  {
+    this.showDbImages =!this.showDbImages;
+    this.loadDbImages();
   }
 
 }

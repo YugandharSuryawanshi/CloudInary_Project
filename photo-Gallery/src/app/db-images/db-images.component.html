@@ -1,17 +1,32 @@
-<p>db-images works!</p>
+<div class="container">
+    <div class="col-md-12 text-center">
+        <button class="btn btn-warning m-3" (click)="changeDB()">
+            CloudInary Images
+        </button>
+        <button class="btn btn-warning m-3" (click)="changeDB()">
+            DB Images
+        </button>
+    </div>
+</div>
 <div class="container">
     <div class="col-md-12">
         <div class="row">
             <div class="col-md-2" *ngFor="let image of images">
-                <div class="card mb-3">
-                    <img [src]="image.cloudinary_url" class="card-img-top" alt="..." style="height: 200px;">
-                    <!-- <img [src]="image.image_url" class="card-img-top" alt="..."> -->
+                <div *ngIf="!showDbImages">
+                    <div class="card mb-3">
+                        <img [src]="image.cloudinary_url" class="card-img-top" alt="...">
+                    </div>
                 </div>
-                <img [src]="'http://localhost:3000' + image.image_url" class="card-img-top" alt="Image" style="height: 200px;">
+            </div>
         </div>
-        <div *ngFor="let image of images">
-            <img [src]="'http://localhost:3000' + image.image_url" class="card-img-top" alt="Image" style="height: 200px;">
-            <p>http://localhost:3000/{{image.image_url}}</p>
+        <div class="row">
+            <div class="col-md-2" *ngFor="let image of images">
+                <div *ngIf="showDbImages">
+                    <div class="cart mb-3">
+                        <img [src]="'http://localhost:3000' + image.image_url" class="card-img-top" alt="...">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
