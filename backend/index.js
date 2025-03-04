@@ -99,6 +99,8 @@ app.get('/api/images/db', async (req, res) => {
 
         console.log('Fetched images from database:', rows.length);
         res.json(rows);
+        console.log(rows);
+        
     } catch (error) {
         console.error('Database error:', error);
         res.status(500).json({ error: 'Failed to fetch database images' });
@@ -123,7 +125,7 @@ app.get('/api/images/cloud', async (req, res) => {
 });
 
 // Start server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });

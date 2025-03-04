@@ -1,21 +1,23 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
-  imports: [],
+  imports: [RouterModule, CommonModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
 
-  isLoggedIn = false;
+  // isLoggedIn = false;
 
-  login() {
-    this.isLoggedIn = true;
-  }
+  // login() {
+  //   this.isLoggedIn = true;
+  // }
 
-  logout() {
-    this.isLoggedIn = false;
-  }
+  // logout() {
+  //   this.isLoggedIn = false;
+  // }
 
 }
