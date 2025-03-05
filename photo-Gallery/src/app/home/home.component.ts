@@ -1,5 +1,6 @@
-import { CommonModule } from '@angular/common';
-import { Component, ViewChild } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Component, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { WebcamImage, WebcamInitError, WebcamModule, WebcamUtil } from 'ngx-webcam';
 import { Observable, Subject } from 'rxjs';
 import { ImageApiService } from '../services/image-api.service';
@@ -32,12 +33,22 @@ export class HomeComponent {
   images: any[] = [];
   selectedImage: any = null;
   currentIndex: number = 0;
+  isBrowser: boolean = false;
+  webcamEnabled: boolean = false; // Flag to enable webcam only when browser is detected
 
-  constructor(private imageService: ImageApiService) {}
+  // constructor(private imageService: ImageApiService, private toastr:ToastrService) {}
+
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private imageService: ImageApiService, private toastr: ToastrService) {
+    this.isBrowser = isPlatformBrowser(this.platformId); // Check if browser
+  }
 
   ngOnInit(): void {
-    this.loadDbImages();
-    WebcamUtil.getAvailableVideoInputs().then(() => {});
+    if (this.isBrowser) {
+      this.webcamEnabled = true;
+      this.loadDbImages();
+      WebcamUtil.getAvailableVideoInputs().then(() => { });
+    }
   }
 
   // Modal operations
@@ -125,21 +136,25 @@ export class HomeComponent {
     return new Blob([ab], { type: mimeString });
   }
 
-  private uploadImage(file: File): void {
+  uploadImage(file: File): void {
+    console.log(file);
     this.imageService.uploadImage(file).subscribe({
-      next: () => {
-        alert('Image uploaded successfully!');
+      next: (res) => {
+        console.log('Upload successful', res);
+        this.toastr.success('Image Uploaded Successfully..', 'Success', { closeButton: true, disableTimeOut: false, progressBar: true });
         this.loadDbImages();
       },
-      error: () => {
-        alert('Upload failed. Please try again.');
+      error: (err) => {
+        console.error('Upload failed', err);
+        this.toastr.error('Upload failed. Please try again.', 'Error', { closeButton: true, disableTimeOut: false, progressBar: true }); // Error toast
       }
     });
   }
 
+
   // Error handling
   handleError(error: WebcamInitError): void {
-    const errorMessage = error.mediaStreamError?.name === 'NotAllowedError' 
+    const errorMessage = error.mediaStreamError?.name === 'NotAllowedError'
       ? 'Camera access was denied. Please allow camera access in your browser settings.'
       : `Camera error: ${error.message}`;
     alert(errorMessage);
@@ -162,8 +177,28 @@ export class HomeComponent {
   }
 
   deleteImage(image: any): void {
-    console.log(image);
+    this.imageService.deleteImage(image.id).subscribe(
+      (res: any) => {
+        if (res.success) {
+          this.toastr.success('Image deleted successfully!', 'Success', {
+            closeButton: true, disableTimeOut: false, progressBar: true
+          });
+          this.loadDbImages(); // Refresh the image list
+        } else {
+          this.toastr.error('Failed to delete image. Please try again.', 'Error', {
+            closeButton: true, disableTimeOut: false, progressBar: true
+          });
+        }
+      },
+      (error) => {
+        console.error('Error deleting image:', error);
+        this.toastr.error('An error occurred while deleting the image.', 'Error', {
+          closeButton: true, disableTimeOut: false, progressBar: true
+        });
+      }
+    );
   }
+
 
   openModal(image: any, index: number): void {
     this.selectedImage = image;

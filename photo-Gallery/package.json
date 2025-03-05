@@ -11,7 +11,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^19.1.0",
+    "@angular/animations": "^19.2.0",
     "@angular/common": "^19.1.0",
     "@angular/compiler": "^19.1.0",
     "@angular/core": "^19.1.0",
@@ -27,6 +27,7 @@
     "bootstrap": "^5.3.3",
     "express": "^4.18.2",
     "font-awesome": "^4.7.0",
+    "ngx-toastr": "^19.0.0",
     "ngx-webcam": "^0.4.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
