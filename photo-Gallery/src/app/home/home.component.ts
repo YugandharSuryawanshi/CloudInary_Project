@@ -14,7 +14,7 @@ export class HomeComponent {
 
   // Modal control
   showModal = false;
-  
+
   // Webcam controls
   showWebcam = false;
   capturedImage: string | null = null;
@@ -24,16 +24,20 @@ export class HomeComponent {
     height: { ideal: 480 },
     facingMode: 'environment'
   };
-  
+
   // File upload
   selectedFiles: File[] = [];
   @ViewChild('fileInput') fileInput: any;
 
-  constructor(private imageService: ImageApiService) { }
+  images: any[] = [];
+  selectedImage: any = null;
+  currentIndex: number = 0;
+
+  constructor(private imageService: ImageApiService) {}
 
   ngOnInit(): void {
     this.loadDbImages();
-    WebcamUtil.getAvailableVideoInputs().then((mediaDevices: MediaDeviceInfo[]) => {});
+    WebcamUtil.getAvailableVideoInputs().then(() => {});
   }
 
   // Modal operations
@@ -64,8 +68,9 @@ export class HomeComponent {
 
   uploadCapturedImage(): void {
     if (this.capturedImage) {
-      const blob = this.dataURItoBlob(this.capturedImage);
-      const file = new File([blob], `captured_${Date.now()}.jpg`, { type: 'image/jpeg' });
+      const file = new File([
+        this.dataURItoBlob(this.capturedImage)
+      ], `captured_${Date.now()}.jpg`, { type: 'image/jpeg' });
       this.uploadImage(file);
       this.resetCamera();
       this.showModal = false;
@@ -114,7 +119,6 @@ export class HomeComponent {
     const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
     const ab = new ArrayBuffer(byteString.length);
     const ia = new Uint8Array(ab);
-    
     for (let i = 0; i < byteString.length; i++) {
       ia[i] = byteString.charCodeAt(i);
     }
@@ -123,12 +127,11 @@ export class HomeComponent {
 
   private uploadImage(file: File): void {
     this.imageService.uploadImage(file).subscribe({
-      next: (res) => {
-        console.log('Upload successful', res);
+      next: () => {
         alert('Image uploaded successfully!');
+        this.loadDbImages();
       },
-      error: (err) => {
-        console.error('Upload failed', err);
+      error: () => {
         alert('Upload failed. Please try again.');
       }
     });
@@ -136,13 +139,9 @@ export class HomeComponent {
 
   // Error handling
   handleError(error: WebcamInitError): void {
-    let errorMessage = '';
-    if (error.mediaStreamError && error.mediaStreamError.name === 'NotAllowedError') {
-      errorMessage = 'Camera access was denied. Please allow camera access in your browser settings.';
-    } else {
-      errorMessage = `Camera error: ${error.message}`;
-    }
-    console.error(errorMessage);
+    const errorMessage = error.mediaStreamError?.name === 'NotAllowedError' 
+      ? 'Camera access was denied. Please allow camera access in your browser settings.'
+      : `Camera error: ${error.message}`;
     alert(errorMessage);
     this.resetCamera();
   }
@@ -152,37 +151,23 @@ export class HomeComponent {
     return this.trigger.asObservable();
   }
 
-
-
-  images: any[] = [];
-
-  loadDbImages() {
+  // Database image handling
+  loadDbImages(): void {
     this.imageService.getDbImages().subscribe({
       next: (data: any) => {
         this.images = data;
-        console.log('The Images OF DB are '+this.images);
-        
       },
       error: (err: any) => console.error(err)
     });
   }
 
-  deleteImage(image:any)
-  {
+  deleteImage(image: any): void {
     console.log(image);
-    
   }
 
-
-
-
-  selectedImage: any = null;
-  currentIndex: number = 0;
-
-  openModal(image: any, index: number) {
+  openModal(image: any, index: number): void {
     this.selectedImage = image;
     this.currentIndex = index;
-
     const modalElement = document.getElementById('imageModal');
     if (modalElement) {
       modalElement.style.display = 'block';
@@ -190,7 +175,7 @@ export class HomeComponent {
     }
   }
 
-  closeModal1() {
+  closeModal1(): void {
     const modalElement = document.getElementById('imageModal');
     if (modalElement) {
       modalElement.style.display = 'none';
@@ -198,14 +183,14 @@ export class HomeComponent {
     }
   }
 
-  nextImage() {
+  nextImage(): void {
     if (this.currentIndex < this.images.length - 1) {
       this.currentIndex++;
       this.selectedImage = this.images[this.currentIndex];
     }
   }
 
-  prevImage() {
+  prevImage(): void {
     if (this.currentIndex > 0) {
       this.currentIndex--;
       this.selectedImage = this.images[this.currentIndex];

@@ -1,46 +1,92 @@
-/* Image Section Start Here */
-.image-card {
-    border-radius: 10px;
+/* Image Card */
+.img-card {
+    border: none;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     position: relative;
+}
+
+/* Image Container */
+.img-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
     margin-bottom: 10px;
 }
+.img-container img {
+    height: 300px;
+    object-fit: cover;
+}
 
-.image-wrapper {
-    position: relative;
-    display: inline-block;
+/* Image Hover Effect */
+.img-hover {
     width: 100%;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.img-container:hover .img-hover {
+    transform: scale(1.05);
+    opacity: 0.8;
 }
 
-.image-wrapper img {
-    height: 200px; /* Uniform image height */
-    width: 100%; /* Make width responsive */
-    object-fit: cover; /* Ensures proper cropping */
-    border-radius: 10px; /* Rounded corners */
-    transition: opacity 0.3s ease-in-out;
-}
-
-.image-wrapper:hover img {
-    opacity: 0.6; /* Reduce opacity on hover */
-    height: 201px;
-}
-
-.delete-btn {
+/* Overlay */
+.overlay {
     position: absolute;
-    top: 8%;
-    left: 6%;
-    transform: translate(-50%, -50%);
-    background-color: rgb(255, 0, 0);
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
-    font-weight: bold;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     opacity: 0;
-    transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.3s ease;
+}
+.img-container:hover .overlay {
+    opacity: 1;
 }
 
-.image-wrapper:hover .delete-btn {
-    opacity: 1; /* Show button on hover */
+/* View Button */
+.view-btn {
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+/* Modal */
+.modal1 {
+    display: none;
+    position: fixed;
+    z-index: 1050;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal1.show {
+    display: block;
+}
+
+.modal1-dialog {
+    height: 500px;
+    margin: auto;
+}
+
+.modal1-content {
+    height: 650px;
+    width: 80%;
+    margin-left: 10%;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.modal1-body {
+    text-align: center;
+}
+
+.modal1-body img {
+    height: 550px;
 }

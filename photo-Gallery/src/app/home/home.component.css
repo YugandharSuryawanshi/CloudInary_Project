@@ -7,93 +7,11 @@
     max-width: 800px;
 }
 
-webcam {
-    display: block;
-    margin: 0 auto;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.img-preview {
-    max-width: 100%;
-    max-height: 400px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.file-section {
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    padding: 15px;
-    margin-top: 20px;
-}
-
-.file-list {
-    max-height: 200px;
-    overflow-y: auto;
-}
-
-.file-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 8px;
-    border-bottom: 1px solid #eee;
-}
-
-.file-name {
-    flex: 2;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-}
-
-.file-size {
-    flex: 1;
-    text-align: right;
-    color: #666;
-}
-
-.btn {
-    min-width: 120px;
-}
-
-
-
-
-/* Main Image Card */
-.image-card {
-    border: none;
-    overflow: hidden;
-    position: relative;
-}
-
-/* Image Container */
-.image-container {
-    position: relative;
-    overflow: hidden;
-    border-radius: 8px;
-    margin-bottom: 10px;
-}
-.image-container img
-{
+.image-container img {
     height: 300px;
     object-fit: cover;
 }
 
-/* Image Styling */
-.image-hover {
-    width: 100%;
-    height: auto;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-/* Hover Effect: Slightly Increase Size & Show Overlay */
-.image-container:hover .image-hover {
-    transform: scale(1.05);
-    opacity: 0.8;
-}
-
-/* Overlay Effect */
 .overlay {
     position: absolute;
     top: 0;
@@ -108,8 +26,55 @@ webcam {
     transition: opacity 0.3s ease;
 }
 
-/* Show Overlay on Hover */
 .image-container:hover .overlay {
+    opacity: 1;
+}
+
+
+/* Image Card */
+.img-card {
+    border: none;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Image Container */
+.img-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+.img-container img {
+    height: 300px;
+    object-fit: cover;
+}
+
+/* Image Hover Effect */
+.img-hover {
+    width: 100%;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.img-container:hover .img-hover {
+    transform: scale(1.05);
+    opacity: 0.8;
+}
+
+/* Overlay */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.img-container:hover .overlay {
     opacity: 1;
 }
 
@@ -121,8 +86,8 @@ webcam {
     border-radius: 5px;
 }
 
-/* Modal Styling */
-.modal {
+/* Modal */
+.modal1 {
     display: none;
     position: fixed;
     z-index: 1050;
@@ -134,30 +99,27 @@ webcam {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-.modal.show {
+.modal1.show {
     display: block;
 }
 
-.modal-dialog {
-    background-color: red;
+.modal1-dialog {
     height: 500px;
-    margin: -5% auto;
+    margin: auto;
 }
 
-.modal-content {
-    height: 750px;
+.modal1-content {
+    height: 650px;
+    width: 80%;
+    margin-left: 10%;
     background-color: white;
-    padding: 10px;
     border-radius: 10px;
 }
-.modal-body
-{
+
+.modal1-body {
     text-align: center;
-    /* height: 500px;
-    width: 400px; */
 }
-.modal-body img
-{
-    /* width: 500px; */
+
+.modal1-body img {
     height: 550px;
 }

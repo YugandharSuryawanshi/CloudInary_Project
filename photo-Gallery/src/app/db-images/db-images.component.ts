@@ -13,33 +13,65 @@ export class DbImagesComponent {
 
   images: any[] = [];
   showDbImages = true;
+  selectedImage: any = null;
+  currentIndex: number = 0;
 
   constructor(private imageService: ImageApiService) { }
 
   ngOnInit(): void {
-    this.loadDbImages();
+    this.loadImages();
   }
 
-  loadDbImages() {
+  loadImages() {
     this.imageService.getDbImages().subscribe({
       next: (data: any) => {
         this.images = data;
-        console.log('The Images OF DB are '+this.images);
-        
       },
       error: (err: any) => console.error(err)
     });
   }
 
-  changeDB()
-  {
-    this.showDbImages =!this.showDbImages;
-    this.loadDbImages();
+  toggleImages(dbImages: boolean) {
+    this.showDbImages = dbImages;
+    this.loadImages();
   }
 
-  deleteImage(imageId: any)
+  openModal(image: any, index: number) {
+    this.selectedImage = image;
+    this.currentIndex = index;
+
+    const modalElement = document.getElementById('imageModal');
+    if (modalElement) {
+      modalElement.style.display = 'block';
+      modalElement.classList.add('show');
+    }
+  }
+
+  closeModal() {
+    const modalElement = document.getElementById('imageModal');
+    if (modalElement) {
+      modalElement.style.display = 'none';
+      modalElement.classList.remove('show');
+    }
+  }
+
+  nextImage() {
+    if (this.currentIndex < this.images.length - 1) {
+      this.currentIndex++;
+      this.selectedImage = this.images[this.currentIndex];
+    }
+  }
+
+  prevImage() {
+    if (this.currentIndex > 0) {
+      this.currentIndex--;
+      this.selectedImage = this.images[this.currentIndex];
+    }
+  }
+
+  deleteImage(image:any)
   {
-    
+
   }
 
 }
