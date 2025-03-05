@@ -32,10 +32,8 @@ export class HomeComponent {
   constructor(private imageService: ImageApiService) { }
 
   ngOnInit(): void {
-    WebcamUtil.getAvailableVideoInputs()
-      .then((mediaDevices: MediaDeviceInfo[]) => {
-        console.log('Available cameras:', mediaDevices);
-      });
+    this.loadDbImages();
+    WebcamUtil.getAvailableVideoInputs().then((mediaDevices: MediaDeviceInfo[]) => {});
   }
 
   // Modal operations
@@ -70,6 +68,7 @@ export class HomeComponent {
       const file = new File([blob], `captured_${Date.now()}.jpg`, { type: 'image/jpeg' });
       this.uploadImage(file);
       this.resetCamera();
+      this.showModal = false;
     }
   }
 
@@ -151,6 +150,27 @@ export class HomeComponent {
   // Webcam trigger observable
   public get triggerObservable(): Observable<void> {
     return this.trigger.asObservable();
+  }
+
+
+
+  images: any[] = [];
+
+  loadDbImages() {
+    this.imageService.getDbImages().subscribe({
+      next: (data: any) => {
+        this.images = data;
+        console.log('The Images OF DB are '+this.images);
+        
+      },
+      error: (err: any) => console.error(err)
+    });
+  }
+
+  deleteImage(image:any)
+  {
+    console.log(image);
+    
   }
 
 }

@@ -37,4 +37,9 @@ export class DbImagesComponent {
     this.loadDbImages();
   }
 
+  deleteImage(imageId: any)
+  {
+    
+  }
+
 }

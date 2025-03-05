@@ -56,3 +56,50 @@ webcam {
 .btn {
     min-width: 120px;
 }
+
+/* Image Section Start Here */
+.image-card {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.image-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.image-wrapper img {
+    height: 200px; /* Uniform image height */
+    width: 100%; /* Make width responsive */
+    object-fit: cover; /* Ensures proper cropping */
+    border-radius: 10px; /* Rounded corners */
+    transition: opacity 0.3s ease-in-out;
+}
+
+.image-wrapper:hover img {
+    opacity: 0.6; /* Reduce opacity on hover */
+    height: 201px;
+}
+
+.delete-btn {
+    position: absolute;
+    top: 8%;
+    left: 6%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(255, 0, 0);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.image-wrapper:hover .delete-btn {
+    opacity: 1; /* Show button on hover */
+}
