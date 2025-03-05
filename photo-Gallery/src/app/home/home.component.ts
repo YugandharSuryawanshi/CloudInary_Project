@@ -173,4 +173,43 @@ export class HomeComponent {
     
   }
 
+
+
+
+  selectedImage: any = null;
+  currentIndex: number = 0;
+
+  openModal(image: any, index: number) {
+    this.selectedImage = image;
+    this.currentIndex = index;
+
+    const modalElement = document.getElementById('imageModal');
+    if (modalElement) {
+      modalElement.style.display = 'block';
+      modalElement.classList.add('show');
+    }
+  }
+
+  closeModal1() {
+    const modalElement = document.getElementById('imageModal');
+    if (modalElement) {
+      modalElement.style.display = 'none';
+      modalElement.classList.remove('show');
+    }
+  }
+
+  nextImage() {
+    if (this.currentIndex < this.images.length - 1) {
+      this.currentIndex++;
+      this.selectedImage = this.images[this.currentIndex];
+    }
+  }
+
+  prevImage() {
+    if (this.currentIndex > 0) {
+      this.currentIndex--;
+      this.selectedImage = this.images[this.currentIndex];
+    }
+  }
+
 }
