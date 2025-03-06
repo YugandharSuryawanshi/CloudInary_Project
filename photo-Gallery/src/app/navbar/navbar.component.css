@@ -1,0 +1,26 @@
+/* Navbar Brand Customization */
+.navbar-brand {
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand i {
+    margin-right: 8px;
+}
+
+/* Navbar Link Hover & Active Effects */
+.navbar-nav .nav-link {
+    font-size: 1.1rem;
+    transition: 0.3s;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #f8d210 !important;
+    transform: scale(1.1);
+}
+
+.navbar-nav .nav-link.active {
+    font-weight: bold;
+    text-decoration: underline;
+}

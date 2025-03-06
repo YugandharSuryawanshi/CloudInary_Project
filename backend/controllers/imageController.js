@@ -45,6 +45,7 @@ const getDbImages = async (req, res) => {
         const connection = await pool.getConnection();
         const [rows] = await connection.query('SELECT * FROM images ORDER BY id DESC');
         connection.release();
+
         res.json(rows);
     } catch (error) {
         console.error('Database error:', error);

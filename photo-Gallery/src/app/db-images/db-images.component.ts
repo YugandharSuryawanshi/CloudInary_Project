@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ImageApiService } from '../services/image-api.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-db-images',
@@ -16,7 +17,7 @@ export class DbImagesComponent {
   selectedImage: any = null;
   currentIndex: number = 0;
 
-  constructor(private imageService: ImageApiService) { }
+  constructor(private imageService: ImageApiService, private toastr:ToastrService) { }
 
   ngOnInit(): void {
     this.loadImages();
@@ -69,9 +70,27 @@ export class DbImagesComponent {
     }
   }
 
-  deleteImage(image:any)
-  {
-
+  deleteImage(image: any): void {
+    this.imageService.deleteImage(image.id).subscribe(
+      (res: any) => {
+        if (res.success) {
+          this.toastr.success('Image deleted successfully!', 'Success', {
+            closeButton: true, disableTimeOut: false, progressBar: true
+          });
+          this.loadImages(); // Refresh the image list
+        } else {
+          this.toastr.error('Failed to delete image. Please try again.', 'Error', {
+            closeButton: true, disableTimeOut: false, progressBar: true
+          });
+        }
+      },
+      (error) => {
+        console.error('Error deleting image:', error);
+        this.toastr.error('An error occurred while deleting the image.', 'Error', {
+          closeButton: true, disableTimeOut: false, progressBar: true
+        });
+      }
+    );
   }
 
 }
