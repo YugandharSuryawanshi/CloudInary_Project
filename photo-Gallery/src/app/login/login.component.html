@@ -1,0 +1,94 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+            <div class="form-toggle text-center mb-4">
+                <button class="btn btn-toggle" [class.active]="isLoginForm" (click)="isLoginForm = true">
+                    Login
+                </button>
+                <button class="btn btn-toggle" [class.active]="!isLoginForm" (click)="isLoginForm = false">
+                    Register
+                </button>
+            </div>
+
+            <!-- Login Form -->
+            <form *ngIf="isLoginForm" #loginForm="ngForm" (ngSubmit)="onLoginSubmit(loginForm)" class="form-card">
+                <h3 class="form-title">Welcome Back! 👋</h3>
+
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="loginEmail" name="email" [(ngModel)]="loginData.email"
+                        required email #email="ngModel">
+                    <label for="loginEmail">Email address</label>
+                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+                        <div *ngIf="email.errors?.['required']">Email is required</div>
+                        <div *ngIf="email.errors?.['email']">Invalid email format</div>
+                    </div>
+                </div>
+
+                <div class="form-floating mb-3 position-relative">
+                    <input [type]="showLoginPassword ? 'text' : 'password'" class="form-control" id="loginPassword"
+                        name="password" [(ngModel)]="loginData.password" required #password="ngModel">
+                    <label for="loginPassword">Password</label>
+                    <i class="bi password-toggle" [class.bi-eye]="!showLoginPassword"
+                        [class.bi-eye-slash]="showLoginPassword" (click)="showLoginPassword = !showLoginPassword"></i>
+                    <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
+                        Password is required
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 py-2" [disabled]="!loginForm.valid">
+                    Sign In
+                </button>
+            </form>
+
+            <!-- Registration Form -->
+            <form *ngIf="!isLoginForm" #registerForm="ngForm" (ngSubmit)="onRegisterSubmit(registerForm)"
+                class="form-card">
+                <h3 class="form-title">Create New Account 🚀</h3>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="registerName" name="name"
+                        [(ngModel)]="registerData.name" required #name="ngModel">
+                    <label for="registerName">Full Name</label>
+                    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
+                        Name is required
+                    </div>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="registerEmail" name="email"
+                        [(ngModel)]="registerData.email" required email #regEmail="ngModel">
+                    <label for="registerEmail">Email address</label>
+                    <div *ngIf="regEmail.invalid && (regEmail.dirty || regEmail.touched)" class="text-danger">
+                        <div *ngIf="regEmail.errors?.['required']">Email is required</div>
+                        <div *ngIf="regEmail.errors?.['email']">Invalid email format</div>
+                    </div>
+                </div>
+
+                <div class="form-floating mb-3 position-relative">
+                    <input [type]="showRegisterPassword ? 'text' : 'password'" class="form-control"
+                        id="registerPassword" name="password" [(ngModel)]="registerData.password" required minlength="6"
+                        #regPassword="ngModel">
+                    <label for="registerPassword">Password</label>
+                    <i class="bi password-toggle" [class.bi-eye]="!showRegisterPassword"
+                        [class.bi-eye-slash]="showRegisterPassword"
+                        (click)="showRegisterPassword = !showRegisterPassword"></i>
+                    <div *ngIf="regPassword.invalid && (regPassword.dirty || regPassword.touched)" class="text-danger">
+                        <div *ngIf="regPassword.errors?.['required']">Password is required</div>
+                        <div *ngIf="regPassword.errors?.['minlength']">Minimum 6 characters required</div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-success w-100 py-2" [disabled]="!registerForm.valid">
+                    Create Account
+                </button>
+            </form>
+
+            <p class="text-center mt-3">
+                {{ isLoginForm ? "Don't have an account?" : "Already have an account?" }}
+                <a href="#" (click)="isLoginForm = !isLoginForm">
+                    {{ isLoginForm ? 'Register here' : 'Login here' }}
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
