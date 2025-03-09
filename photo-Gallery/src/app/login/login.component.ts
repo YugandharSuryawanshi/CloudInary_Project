@@ -28,14 +28,14 @@ export class LoginComponent {
   onLoginSubmit(form: any) {
     if (form.valid) {
       console.log('Login Data:', this.loginData);
-      // Add your login logic here
+      // login logic here
     }
   }
 
   onRegisterSubmit(form: any) {
     if (form.valid) {
       console.log('Registration Data:', this.registerData);
-      // Add your registration logic here
+      // registration logic here
     }
   }
   
