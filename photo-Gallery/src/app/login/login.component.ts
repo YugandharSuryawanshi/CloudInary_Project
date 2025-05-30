@@ -35,7 +35,7 @@ export class LoginComponent {
   onRegisterSubmit(form: any) {
     if (form.valid) {
       console.log('Registration Data:', this.registerData);
-      // registration logic here
+      // registration logic add here
     }
   }
   
