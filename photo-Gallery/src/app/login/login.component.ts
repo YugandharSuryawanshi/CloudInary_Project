@@ -28,7 +28,8 @@ export class LoginComponent {
   onLoginSubmit(form: any) {
     if (form.valid) {
       console.log('Login Data:', this.loginData);
-      // login logic here
+      // Call API's
+      // login logic add here
     }
   }
 
