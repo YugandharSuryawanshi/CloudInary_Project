@@ -27,7 +27,7 @@
                 <div class="form-floating mb-3 position-relative">
                     <input [type]="showLoginPassword ? 'text' : 'password'" class="form-control" id="loginPassword"
                         name="password" [(ngModel)]="loginData.password" required #password="ngModel">
-                    <label for="loginPassword">Password</label>
+                    <label for="loginPassword" >Password</label>
                     <i class="bi password-toggle" [class.bi-eye]="!showLoginPassword"
                         [class.bi-eye-slash]="showLoginPassword" (click)="showLoginPassword = !showLoginPassword"></i>
                     <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
