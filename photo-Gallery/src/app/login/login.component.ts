@@ -23,16 +23,10 @@ export class LoginComponent {
     name: '',
     email: '',
     password: ''
-  };
-
-  onLoginSubmit(form: any) {
-    form = new FormData();
-    if (form.valid) {
-      console.log('Login Data:', this.loginData);
-      // Call API's
-      // login logic add here
-    }
   }
+
+  onLoginSubmit(loginForm:any)
+  {}
 
   onRegisterSubmit(form: any) {
     if (form.valid) {
