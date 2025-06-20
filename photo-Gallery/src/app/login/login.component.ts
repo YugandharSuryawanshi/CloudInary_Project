@@ -32,7 +32,6 @@ export class LoginComponent {
     if (form.valid) {
       console.log('Registration Data:', this.registerData);
       // registration logic add here
-      
     }
   }
   
