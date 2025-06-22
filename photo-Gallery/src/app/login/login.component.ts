@@ -24,7 +24,6 @@ export class LoginComponent {
     email: '',
     password: ''
   }
-
   onLoginSubmit(loginForm:any)
   {}
 
