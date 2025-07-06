@@ -37,14 +37,14 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary w-100 py-2" [disabled]="!loginForm.valid">
-                    Sign In
+                    Sign In →
                 </button>
             </form>
 
             <!-- Registration Form -->
             <form *ngIf="!isLoginForm" #registerForm="ngForm" (ngSubmit)="onRegisterSubmit(registerForm)"
                 class="form-card">
-                <h3 class="form-title">Create New Account 🚀</h3>
+                <h3 class="form-title">Create New Account</h3>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="registerName" name="name"
