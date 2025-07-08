@@ -12,8 +12,7 @@ const indexHtml = join(serverDistFolder, 'index.server.html');
 const app = express();
 const commonEngine = new CommonEngine();
 
-/**
- * Serve static files from /browser
+/*** Serve static files from /browser
  */
 app.get(
   '**',
