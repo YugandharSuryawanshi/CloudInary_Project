@@ -27,7 +27,6 @@ app.get(
  */
 app.get('**', (req, res, next) => {
   const { protocol, originalUrl, baseUrl, headers } = req;
-
   commonEngine
     .render({
       bootstrap,
