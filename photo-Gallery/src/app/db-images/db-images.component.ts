@@ -16,6 +16,7 @@ export class DbImagesComponent {
   showDbImages = true;
   selectedImage: any = null;
   currentIndex: number = 0;
+  
 
   constructor(private imageService: ImageApiService, private toastr:ToastrService) { }
 
