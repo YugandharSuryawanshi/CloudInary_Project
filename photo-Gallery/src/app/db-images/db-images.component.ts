@@ -42,6 +42,7 @@ export class DbImagesComponent {
     this.currentIndex = index;
 
     const modalElement = document.getElementById('imageModal');
+    
     if (modalElement) {
       modalElement.style.display = 'block';
       modalElement.classList.add('show');
