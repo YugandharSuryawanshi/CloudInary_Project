@@ -16,7 +16,7 @@ export class DbImagesComponent {
   showDbImages = true;
   selectedImage: any = null;
   currentIndex: number = 0;
-  
+
 
   constructor(private imageService: ImageApiService, private toastr:ToastrService) { }
 
@@ -41,7 +41,6 @@ export class DbImagesComponent {
   openModal(image: any, index: number) {
     this.selectedImage = image;
     this.currentIndex = index;
-
     const modalElement = document.getElementById('imageModal');
     
     if (modalElement) {
