@@ -51,6 +51,7 @@ export class DbImagesComponent {
 
   closeModal() {
     const modalElement = document.getElementById('imageModal');
+    
     if (modalElement) {
       modalElement.style.display = 'none';
       modalElement.classList.remove('show');
