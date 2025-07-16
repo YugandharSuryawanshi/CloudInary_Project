@@ -17,7 +17,6 @@ export class DbImagesComponent {
   selectedImage: any = null;
   currentIndex: number = 0;
 
-
   constructor(private imageService: ImageApiService, private toastr:ToastrService) { }
 
   ngOnInit(): void {
@@ -51,7 +50,7 @@ export class DbImagesComponent {
 
   closeModal() {
     const modalElement = document.getElementById('imageModal');
-    
+
     if (modalElement) {
       modalElement.style.display = 'none';
       modalElement.classList.remove('show');
