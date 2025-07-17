@@ -86,11 +86,12 @@ export class DbImagesComponent {
         }
       },
       (error) => {
-        console.error('Error deleting image:', error);
+        console.error('Error deleting image:- ', error);
         this.toastr.error('An error occurred while deleting the image.', 'Error', {
           closeButton: true, disableTimeOut: false, progressBar: true
         });
       }
     );
   }
+
 }
