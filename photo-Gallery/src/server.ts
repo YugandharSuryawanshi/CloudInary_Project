@@ -21,9 +21,7 @@ app.get(
   }),
 );
 
-/**
- * Handle all other requests by rendering the Angular application.
- */
+/*** Handle all other requests by rendering the Angular application. */
 app.get('**', (req, res, next) => {
   const { protocol, originalUrl, baseUrl, headers } = req;
   commonEngine
