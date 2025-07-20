@@ -24,8 +24,7 @@ app.get(
 /*** Handle all other requests by rendering the Angular application. */
 app.get('**', (req, res, next) => {
   const { protocol, originalUrl, baseUrl, headers } = req;
-  commonEngine
-    .render({
+  commonEngine.render({
       bootstrap,
       documentFilePath: indexHtml,
       url: `${protocol}://${headers.host}${originalUrl}`,
