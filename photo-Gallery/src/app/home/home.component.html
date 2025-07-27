@@ -7,6 +7,7 @@
             </div>
         </div>
     </div>
+    
     <!-- Upload Modal -->
     <div class="modal fade" [class.show]="showModal" [style.display]="showModal ? 'block' : 'none'">
         <div class="modal-dialog modal-dialog-centered">
@@ -119,7 +120,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="modal1-body text-center">
                 <img *ngIf="selectedImage"
                     [src]="selectedImage.cloudinary_url || ('http://localhost:3000' + selectedImage.image_url)"
