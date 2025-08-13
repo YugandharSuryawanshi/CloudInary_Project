@@ -11,4 +11,5 @@ import { NavbarComponent } from './navbar/navbar.component';
 
 export class AppComponent {
   title = 'photo-Gallery Application';
+  details: any = "Photo gallery application provide facility to manage photos and albums. This application is also provide camera facility to click picture";
 }
