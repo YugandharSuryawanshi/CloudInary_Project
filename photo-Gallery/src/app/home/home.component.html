@@ -54,8 +54,7 @@
                             <button class="btn btn-success" (click)="fileInput.click()">
                                 <i class="fas fa-folder-open me-2"></i> Choose Files
                             </button>
-                            <input #fileInput type="file" hidden multiple accept="image/*"
-                                (change)="onFileSelected($event)">
+                            <input #fileInput type="file" hidden multiple accept="image/*" (change)="onFileSelected($event)">
                         </div>
 
                         <!-- Selected Files Preview -->
