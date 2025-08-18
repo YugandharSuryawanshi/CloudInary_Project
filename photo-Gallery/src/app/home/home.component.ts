@@ -143,7 +143,7 @@ export class HomeComponent {
       },
       error: (err) => {
         console.error('Upload failed', err);
-        this.toastr.error('Upload failed. Please try again.', 'Error', { closeButton: true, disableTimeOut: false, progressBar: true }); // Error toast
+        this.toastr.error('Image Upload failed. Please try again.', 'Error', { closeButton: true, disableTimeOut: false, progressBar: true }); // Error toast
       }
     });
   }
