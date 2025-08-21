@@ -37,7 +37,9 @@ export class HomeComponent {
   webcamEnabled: boolean = false; // Flag to enable webcam only when browser is detected
 
   constructor(@Inject(PLATFORM_ID)
-  private platformId: Object, private imageService: ImageApiService, private toastr: ToastrService) {
+  private platformId: Object,
+  private imageService: ImageApiService,
+  private toastr: ToastrService) {
     this.isBrowser = isPlatformBrowser(this.platformId); // Check if browser
   }
 
