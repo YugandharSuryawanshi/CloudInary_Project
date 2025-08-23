@@ -55,6 +55,7 @@
                                 <i class="fas fa-folder-open me-2"></i> Choose Files
                             </button>
                             <input #fileInput type="file" hidden multiple accept="image/*" (change)="onFileSelected($event)">
+                            
                         </div>
 
                         <!-- Selected Files Preview -->
@@ -88,7 +89,7 @@
             <div class="card image-card">
                 <div class="image-container">
                     <img [src]="image.cloudinary_url || ('http://localhost:3000' + image.image_url)"
-                        class="card-img-top img-fluid image-hover" (click)="openModal(image, i)">
+                        class="card-img-top img-fluid image-hover">
                     <div class="overlay">
                         <button class="btn btn-light view-btn" (click)="openModal(image, i)">View</button>
                     </div>
