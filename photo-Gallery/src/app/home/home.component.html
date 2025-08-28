@@ -17,7 +17,7 @@
                     <button type="button" class="btn-close" (click)="closeModal()"></button>
                 </div>
                 <div class="modal-body text-center">
-                    <!-- Camera Section -->
+                    <!-- Camera Sections -->
                     <div *ngIf="showWebcam && !capturedImage">
                         <webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
                             (initError)="handleError($event)" [allowCameraSwitch]="true" [videoOptions]="videoOptions">
